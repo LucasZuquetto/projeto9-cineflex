@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import styled from "styled-components"
 import axios from 'axios'
+import Header from "./Header"
+import { Link } from "react-router-dom"
 
 
 export default function Home () {
@@ -17,9 +19,10 @@ useEffect(() => {
 
     return(
         <>
+            <Header />
             <SubTitle>Selecione o Filme</SubTitle>
             <Content>
-                {moviesImage.map((movieSource, index) => <img key={index} src={movieSource} alt='banner' />)}
+                {moviesImage.map((movieSource, index) => <Link key={index} to='/filme' ><img src={movieSource} alt='banner' /></Link>)}
             </Content>
         </>
     )
