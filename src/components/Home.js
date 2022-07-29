@@ -3,6 +3,7 @@ import styled from "styled-components"
 import axios from 'axios'
 import Header from "./Header"
 import { Link } from "react-router-dom"
+import SubTitle from "./styledComponents/SubTitleStyle"
 
 
 export default function Home () {
@@ -27,15 +28,6 @@ useEffect(() => {
         </>
     )
 }
-const SubTitle = styled.span`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #293845;
-    width: 100vw;
-    height: 110px;
-    font-size: 24px;
-`
 const Content = styled.div`
     display: flex;
     justify-content: space-around;
