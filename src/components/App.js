@@ -4,13 +4,14 @@ import MovieShowtimes from './MovieShowtimes'
 import GlobalStyle from './styledComponents/GlobalStyles'
 
 export default function App () {
+    
     return(
         <>
             <GlobalStyle />
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='/filme' element={<MovieShowtimes />} />
+                    <Route path='/filme/:movieId' element={<MovieShowtimes />} />
                 </Routes>
             </BrowserRouter>
         </>

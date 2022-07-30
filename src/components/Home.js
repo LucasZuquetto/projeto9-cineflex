@@ -23,7 +23,7 @@ useEffect(() => {
             <Header />
             <SubTitle>Selecione o Filme</SubTitle>
             <Content>
-                {moviesImage.map((movieSource, index) => <Link key={index} to='/filme' ><img src={movieSource} alt='banner' /></Link>)}
+                {moviesImage.map((movieSource, index) => <Link key={index} to={`/filme/${index}`} ><img index={index} src={movieSource} alt='banner' /></Link>)}
             </Content>
         </>
     )
