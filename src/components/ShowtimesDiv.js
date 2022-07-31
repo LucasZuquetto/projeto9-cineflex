@@ -1,8 +1,9 @@
 import styled from "styled-components"
 
 export default function ShowtimesDiv ({weekdays}) {
+    // pegar id da sessao e redirecionar para outra guia
     return(
-        <>
+        <Content>
             {weekdays.map((weekday, index) => 
             <Showtimes key={index}>
                 <div>
@@ -12,10 +13,13 @@ export default function ShowtimesDiv ({weekdays}) {
                     {weekday.showtimes.map((hour, index) => <MovieHour key={index}>{hour.name}</MovieHour>)}
                 </div>
             </Showtimes> )}
-        </>
+        </Content>
         
     )
 }
+const Content = styled.div`
+    margin-bottom: 117px;
+`
 const Showtimes = styled.div`
     display: flex;
     flex-direction: column;

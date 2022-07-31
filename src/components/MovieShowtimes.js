@@ -4,6 +4,7 @@ import SubTitle from "./styledComponents/SubTitleStyle"
 import axios from "axios"
 import { useParams } from "react-router-dom"
 import ShowtimesDiv from "./ShowtimesDiv"
+import ShowtimesFooter from "./ShowtimesFooter"
 
 export default function MovieShowtimes () {
     let {movieId} = useParams()
@@ -15,16 +16,15 @@ export default function MovieShowtimes () {
        const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${movieId}/showtimes`)
        promise.then(response => {
         let Days = response.data.days
-        console.log(response.data)
         setShowtimeWeekdays([...Days])
     })
     },[])
-    console.log(ShowtimeWeekdays)
     return(
         <>
             <Header />
             <SubTitle>Selecione o horário</SubTitle>
             <ShowtimesDiv weekdays={ShowtimeWeekdays} />
+            <ShowtimesFooter  />
         </>
     )
 }
