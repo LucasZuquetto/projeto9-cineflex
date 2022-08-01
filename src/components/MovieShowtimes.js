@@ -11,11 +11,15 @@ export default function MovieShowtimes () {
     movieId = Number(movieId) + 1
 
     const [ShowtimeWeekdays, setShowtimeWeekdays] = useState([])
+    const [MovieTitle, setMovieTitle] = useState()
+    const [posterUrl, setPosterUrl] = useState('')
 
     useEffect(() => {
        const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${movieId}/showtimes`)
        promise.then(response => {
         let Days = response.data.days
+        setMovieTitle(response.data.title)
+        setPosterUrl(response.data.posterURL)
         setShowtimeWeekdays([...Days])
     })
     },[])
@@ -24,7 +28,7 @@ export default function MovieShowtimes () {
             <Header />
             <SubTitle>Selecione o horário</SubTitle>
             <ShowtimesDiv weekdays={ShowtimeWeekdays} />
-            <ShowtimesFooter  />
+            <ShowtimesFooter MovieTitle={MovieTitle} posterUrl={posterUrl}/>
         </>
     )
 }

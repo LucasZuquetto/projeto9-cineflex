@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Header from "./Header";
 import SubTitle from "./styledComponents/SubTitleStyle";
 
+
 export default function SucessScreen(){
 
     return(
@@ -12,15 +13,15 @@ export default function SucessScreen(){
             <OrderInfo>
                 <div>
                     <Bold>Filme e sessão</Bold>
-                    <Info>blablalba</Info>
+                    <Info>filme e sessao</Info>
                 </div>
                 <div>
                     <Bold>Ingressos</Bold>
-                    <Info>blabla</Info>
+                    <Info>ingressos</Info>
                 </div>
                 <div>
                     <Bold>Comprador</Bold>
-                    <Info>blablabla</Info>
+                    <Info>comprador</Info>
                 </div>
                 <Link to='/'><Button>Voltar pra Home</Button></Link>
             </OrderInfo>

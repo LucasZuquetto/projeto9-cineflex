@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Form from "./Form"
 import Header from "./Header"
+import ShowtimesFooter from "./ShowtimesFooter"
 import SubTitle from "./styledComponents/SubTitleStyle"
 
 export default function MovieSession () {
@@ -15,11 +16,19 @@ export default function MovieSession () {
     const [SessionSeats5, setSessionSeats5] = useState([])
     const [selected, setSelected] = useState(false)
     const [idsSelected, setIdsSelected] = useState([])
+    const [MovieTitle, setMovieTitle] = useState()
+    const [posterUrl, setPosterUrl] = useState('')
+    const [MovieDay, setMovieDay] = useState()
+    const [MovieDate, setMovieDate] = useState()
     
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${sessionId}/seats`)
-        promise.then(response => {console.log(response.data.seats)
+        promise.then(response => {
+        setPosterUrl(response.data.movie.posterURL)
+        setMovieTitle(response.data.movie.title)
+        setMovieDay(response.data.day.weekday)
+        setMovieDate(response.data.day.date)
         setSessionSeats1(response.data.seats.slice(0,10))
         setSessionSeats2(response.data.seats.slice(10,20))
         setSessionSeats3(response.data.seats.slice(20,30))
@@ -72,7 +81,6 @@ export default function MovieSession () {
             return
         }
         setIdsSelected([...idsSelected, seat])
-        console.log(idsSelected)
         setSelected(!selected)
     }
     return (
@@ -101,6 +109,7 @@ export default function MovieSession () {
                 </Examples>
             </Seats>
             <Form ids={idsSelected} />
+            <ShowtimesFooter MovieDate={MovieDate} MovieDay={MovieDay} posterUrl={posterUrl} MovieTitle={MovieTitle} />
         </>
     )
 }

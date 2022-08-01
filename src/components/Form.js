@@ -1,20 +1,21 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import styled from "styled-components"
-
-
-//terminar formulario
-//terminar footer
 
 export default function Form ({ids}){
     const [name, setName] = useState('')
     const [cpf, setCpf] = useState('')
+
     let navigate = useNavigate()
     
-
     function sendData(event){
         event.preventDefault()
+
+        if(ids.length === 0){
+            alert('selecione um assento')
+            return
+        }
         
         const UserData = {
             ids: ids ,
@@ -24,7 +25,6 @@ export default function Form ({ids}){
     
         const request = axios.post('https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many', UserData)
         request.then(() => navigate('/sucesso'))
-
     }
     
     return(
@@ -43,6 +43,7 @@ const Forms = styled.form`
     margin: 42px 24px;
     color: #293845;
     font-size: 18px;
+    
     input{
         height: 51px;
         border: 1px solid #D5D5D5;
@@ -64,7 +65,10 @@ const Forms = styled.form`
         justify-content: center;
         color: #FFFFFF;
         background-color: #E8833A;
-        margin: 40px 60px;
+        margin-left:60px;
+        margin-right: 60px;
+        margin-top: 30px;
+        margin-bottom: 117px;
         height: 50px;
         font-size: 18px;
         border: none;
