@@ -1,7 +1,7 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export default function ShowtimesDiv ({weekdays}) {
-    // pegar id da sessao e redirecionar para outra guia
     return(
         <Content>
             {weekdays.map((weekday, index) => 
@@ -10,7 +10,7 @@ export default function ShowtimesDiv ({weekdays}) {
                     <span>{weekday.weekday} - {weekday.date}</span>
                 </div>
                 <div>
-                    {weekday.showtimes.map((hour, index) => <MovieHour key={index}>{hour.name}</MovieHour>)}
+                    {weekday.showtimes.map((hour, index) => <Link key={index} to={`/sessao/${hour.id}`}><MovieHour >{hour.name}</MovieHour></Link>)}
                 </div>
             </Showtimes> )}
         </Content>
@@ -42,4 +42,9 @@ const MovieHour = styled.div`
     border-radius: 3px;
     color: #FFFFFF;
     margin-right: 8px;
+    
+
+    &:hover{
+        filter: contrast(70%);
+    }
 `

@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
     body {
         line-height: 1;
         font-family: 'Roboto', sans-serif;
+        padding-top: 67px;
     }
     ol, ul {
         list-style: none;
@@ -44,6 +45,9 @@ const GlobalStyle = createGlobalStyle`
     table {
         border-collapse: collapse;
         border-spacing: 0;
+    }
+    a{
+        text-decoration: none;
     }
 
 `
