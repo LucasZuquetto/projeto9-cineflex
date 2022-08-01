@@ -30,11 +30,11 @@ export default function MovieSession () {
             <Header />
             <SubTitle>Selecione o(s) assento(s)</SubTitle>
             <Seats>
-                <div>{SessionSeats1.map((seat, index) =><Seat cor={'#C3CFD9'} borda={'#808F9D'} key={index}>{('00'+seat.name).slice(-2)}</Seat>)}</div>
-                <div>{SessionSeats2.map((seat, index) =><Seat cor={'#C3CFD9'} borda={'#808F9D'} key={index}>{seat.name}</Seat>)}</div>
-                <div>{SessionSeats3.map((seat, index) =><Seat cor={'#C3CFD9'} borda={'#808F9D'} key={index}>{seat.name}</Seat>)}</div>
-                <div>{SessionSeats4.map((seat, index) =><Seat cor={'#C3CFD9'} borda={'#808F9D'} key={index}>{seat.name}</Seat>)}</div>
-                <div>{SessionSeats5.map((seat, index) =><Seat cor={'#C3CFD9'} borda={'#808F9D'} key={index}>{seat.name}</Seat>)}</div>
+                <div>{SessionSeats1.map((seat, index) =><Seat cor={seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{('00'+seat.name).slice(-2)}</Seat>)}</div>
+                <div>{SessionSeats2.map((seat, index) =><Seat cor={seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{seat.name}</Seat>)}</div>
+                <div>{SessionSeats3.map((seat, index) =><Seat cor={seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{seat.name}</Seat>)}</div>
+                <div>{SessionSeats4.map((seat, index) =><Seat cor={seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{seat.name}</Seat>)}</div>
+                <div>{SessionSeats5.map((seat, index) =><Seat cor={seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{seat.name}</Seat>)}</div>
                 <Examples>
                     <Example>
                         <Seat cor={'#1AAE9E'} borda={'#45BDB0'} ></Seat>
