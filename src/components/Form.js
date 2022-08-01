@@ -1,27 +1,30 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 
 //terminar formulario
 //terminar footer
 
-export default function Form ({}){
+export default function Form ({ids}){
     const [name, setName] = useState('')
     const [cpf, setCpf] = useState('')
+    let navigate = useNavigate()
+    
 
     function sendData(event){
         event.preventDefault()
         
-        
         const UserData = {
-            ids: [] ,
+            ids: ids ,
             name: name ,
             cpf:cpf ,
         }
     
         const request = axios.post('https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many', UserData)
-        request.then(response => console.log(response))
+        request.then(() => navigate('/sucesso'))
+
     }
     
     return(

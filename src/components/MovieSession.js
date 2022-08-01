@@ -13,6 +13,9 @@ export default function MovieSession () {
     const [SessionSeats3, setSessionSeats3] = useState([])
     const [SessionSeats4, setSessionSeats4] = useState([])
     const [SessionSeats5, setSessionSeats5] = useState([])
+    const [selected, setSelected] = useState(false)
+    const [idsSelected, setIdsSelected] = useState([])
+    
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${sessionId}/seats`)
@@ -26,16 +29,62 @@ export default function MovieSession () {
     )},[])
 
     
+    function selection(seat){
+        for(let i=0;i<SessionSeats1.length;i++){
+            const item = SessionSeats1[i]
+            if(item.id == seat && item.isAvailable === false){
+                alert('Esse assento não está disponível')
+                return
+            }
+        }
+        for(let i=0;i<SessionSeats2.length;i++){
+            const item = SessionSeats2[i]
+            if(item.id == seat && item.isAvailable === false){
+                alert('Esse assento não está disponível')
+                return
+            }
+        }
+        for(let i=0;i<SessionSeats3.length;i++){
+            const item = SessionSeats3[i]
+            if(item.id == seat && item.isAvailable === false){
+                alert('Esse assento não está disponível')
+                return
+            }
+        }
+        for(let i=0;i<SessionSeats4.length;i++){
+            const item = SessionSeats4[i]
+            if(item.id == seat && item.isAvailable === false){
+                alert('Esse assento não está disponível')
+                return
+            }
+        }
+        for(let i=0;i<SessionSeats5.length;i++){
+            const item = SessionSeats5[i]
+            if(item.id == seat && item.isAvailable === false){
+                alert('Esse assento não está disponível')
+                return
+            }
+        } 
+        if(idsSelected.includes(seat)){
+            let index = idsSelected.indexOf(seat)
+            idsSelected.splice(index, 1)
+            setIdsSelected([...idsSelected])
+            return
+        }
+        setIdsSelected([...idsSelected, seat])
+        console.log(idsSelected)
+        setSelected(!selected)
+    }
     return (
         <>
             <Header />
             <SubTitle>Selecione o(s) assento(s)</SubTitle>
             <Seats>
-                <div>{SessionSeats1.map((seat, index) =><Seat cor={seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{('00'+seat.name).slice(-2)}</Seat>)}</div>
-                <div>{SessionSeats2.map((seat, index) =><Seat cor={seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{seat.name}</Seat>)}</div>
-                <div>{SessionSeats3.map((seat, index) =><Seat cor={seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{seat.name}</Seat>)}</div>
-                <div>{SessionSeats4.map((seat, index) =><Seat cor={seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{seat.name}</Seat>)}</div>
-                <div>{SessionSeats5.map((seat, index) =><Seat cor={seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{seat.name}</Seat>)}</div>
+                <div>{SessionSeats1.map((seat, index) => <Seat id={seat.id} onClick={seat => selection(seat.target.id )} cor={idsSelected.includes(`${seat.id}`) ? '#1AAE9E' : seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={idsSelected.includes(`${seat.id}`) ? '#45BDB0' : seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{('00'+seat.name).slice(-2)}</Seat>)}</div>
+                <div>{SessionSeats2.map((seat, index) =><Seat id={seat.id} onClick={(seat) => selection(seat.target.id)} cor={idsSelected.includes(`${seat.id}`) ? '#1AAE9E' : seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={idsSelected.includes(`${seat.id}`) ? '#45BDB0' : seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{seat.name}</Seat>)}</div>
+                <div>{SessionSeats3.map((seat, index) =><Seat id={seat.id} onClick={(seat) => selection(seat.target.id)} cor={idsSelected.includes(`${seat.id}`) ? '#1AAE9E' : seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={idsSelected.includes(`${seat.id}`) ? '#45BDB0' : seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{seat.name}</Seat>)}</div>
+                <div>{SessionSeats4.map((seat, index) =><Seat id={seat.id} onClick={(seat) => selection(seat.target.id)} cor={idsSelected.includes(`${seat.id}`) ? '#1AAE9E' : seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={idsSelected.includes(`${seat.id}`) ? '#45BDB0' : seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{seat.name}</Seat>)}</div>
+                <div>{SessionSeats5.map((seat, index) =><Seat id={seat.id} onClick={(seat) => selection(seat.target.id)} cor={idsSelected.includes(`${seat.id}`) ? '#1AAE9E' : seat.isAvailable ? '#C3CFD9' : '#FBE192'} borda={idsSelected.includes(`${seat.id}`) ? '#45BDB0' : seat.isAvailable ?'#808F9D' : '#F7C52B'} key={index}>{seat.name}</Seat>)}</div>
                 <Examples>
                     <Example>
                         <Seat cor={'#1AAE9E'} borda={'#45BDB0'} ></Seat>
@@ -51,7 +100,7 @@ export default function MovieSession () {
                     </Example>
                 </Examples>
             </Seats>
-            <Form />
+            <Form ids={idsSelected} />
         </>
     )
 }
