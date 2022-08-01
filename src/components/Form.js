@@ -1,16 +1,35 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 
-function sendData(event){
-    event.preventDefault()
-}
 
-export default function Form (){
+//terminar formulario
+//terminar footer
+
+export default function Form ({}){
+    const [name, setName] = useState('')
+    const [cpf, setCpf] = useState('')
+
+    function sendData(event){
+        event.preventDefault()
+        
+        
+        const UserData = {
+            ids: [] ,
+            name: name ,
+            cpf:cpf ,
+        }
+    
+        const request = axios.post('https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many', UserData)
+        request.then(response => console.log(response))
+    }
+    
     return(
         <Forms onSubmit={sendData}>
             <label for='name'>Nome do comprador:</label>
-            <input type='text' id="name" placeholder="Digite seu nome..."/>
+            <input type='text' value={name} onChange={e => setName(e.target.value)} id="name" placeholder="Digite seu nome..." required/>
             <label for='cpf'>CPF do comprador:</label>
-            <input type='number' id='cpf' placeholder="Digite seu CPF..."/>
+            <input type='number' value={cpf} onChange={e => setCpf(e.target.value)} id='cpf' placeholder="Digite seu CPF..." required/>
             <button type="submit">Reservar assento(s)</button>
         </Forms>
     )
